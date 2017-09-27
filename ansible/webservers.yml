@@ -1,0 +1,19 @@
+---
+
+# Author: Christian Claus
+
+- name: Provision webservers
+  hosts: webservers
+  gather_facts: True
+  serial: 1
+  tasks:
+  - name: Ensure nginx is installed
+    apt:
+      name: nginx
+      state: present
+      update_cache: yes
+  - name: Ensure nginx is started and enabled to start at boot
+    service: 
+      name: nginx 
+      state: started 
+      enabled: yes      

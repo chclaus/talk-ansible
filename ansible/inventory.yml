@@ -1,0 +1,11 @@
+all:
+  hosts:
+    mail.example.com:
+  children:
+    webservers:
+      hosts:
+        web1.example.com:
+        web2.example.com:
+    dbservers:
+      hosts:
+        db1.example.com:

@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mail:
+    build: sshd
+    ports:
+      - "127.0.0.1:4203:22"
+  web1:
+    build: sshd
+    ports:
+      - "127.0.0.1:4200:22"
+      - "127.0.0.1:8000:80"
+  web2:
+    build: sshd
+    ports:
+      - "127.0.0.1:4201:22"
+      - "127.0.0.1:8001:80"
+  db1:
+    build: sshd
+    ports:
+      - "127.0.0.1:4202:22"
