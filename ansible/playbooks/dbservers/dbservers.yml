@@ -1,0 +1,56 @@
+---
+
+# Author: Christian Claus
+
+- name: Provision dbservers
+  hosts: dbservers
+  gather_facts: no
+  serial: 1
+  tasks:
+  - name: Ensure database installation
+    apt: 
+      name: "{{ item }}"
+      update_cache: yes
+    with_items:
+        - postgresql
+        - libpq-dev
+        - python-psycopg2
+  - name: Ensure postgresql is started and enabled to start at boot
+    service:
+      name: postgresql
+      state: started
+      enabled: yes
+  - name: Ensure user setup
+    user:
+      name: "{{ item.name }}"
+      state: present
+    with_items:
+    - "{{ users }}"
+  - name: Set authorized ssh keys
+    authorized_key:
+      user: "{{ item.0.name }}"
+      key: "https://github.com/{{ item.1 }}.keys"
+      validate_certs: no
+      #comment: "{{ item.1 }}"
+    with_subelements:
+    - "{{ users }}"
+    - ssh_keys
+  - name: Set postgres users
+    postgresql_user:
+      db: "{{ item.name }}"
+      name: "{{ item.name }}"
+      role_attr_flags: CREATEDB,NOSUPERUSER
+    become: yes
+    become_user: postgres
+    with_items:
+    - "{{ users }}"
+  - name: Ensure database existance
+    postgresql_db:
+      name: "{{ item.name }}"
+      encoding: UTF-8
+      template: template0
+      owner: "{{ item.name }}"
+    become: yes
+    become_user: postgres
+    with_items:
+    - "{{ users }}"

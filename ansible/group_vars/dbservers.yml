@@ -1,0 +1,4 @@
+users:
+  - name: app1
+    ssh_keys:
+      - chclaus
