@@ -17,3 +17,8 @@
       name: nginx 
       state: started 
       enabled: yes      
+  - name: Template index page
+    template:
+      src: templates/index.html.j2
+      dest: /var/www/html/index.nginx-debian.html
+

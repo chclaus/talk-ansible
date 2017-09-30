@@ -5,17 +5,25 @@ services:
     build: sshd
     ports:
       - "127.0.0.1:4203:22"
+    hostname: mail
+    domainname: example.com
   web1:
     build: sshd
     ports:
       - "127.0.0.1:4200:22"
       - "127.0.0.1:8000:80"
+    hostname: web1
+    domainname: example.com
   web2:
     build: sshd
     ports:
       - "127.0.0.1:4201:22"
       - "127.0.0.1:8001:80"
+    hostname: web2
+    domainname: example.com
   db1:
     build: sshd
     ports:
       - "127.0.0.1:4202:22"
+    hostname: db1
+    domainname: example.com
