@@ -1,0 +1,35 @@
+- name: Setting alias for l
+  lineinfile: 
+    dest: "{{ ansible_env.HOME }}/.bashrc" 
+    line: "alias l='ls -lah'"
+
+- name: Setting alias for la
+  lineinfile: 
+    dest: "{{ ansible_env.HOME }}/.bashrc" 
+    line: "alias la='ls -lAh'"
+
+- name: Setting alias for ll
+  lineinfile: 
+    dest: "{{ ansible_env.HOME }}/.bashrc" 
+    line: "alias ll='ls -lh'"
+
+- name: Checking if .vimrc file already exists
+  stat: 
+    path: "{{ ansible_env.HOME }}/.vimrc"
+  register: vimrc_present
+
+- name: Add vimrc file
+  file: 
+    path: "{{ ansible_env.HOME }}/.vimrc"
+    state: "touch"
+  when: vimrc_present.stat.exists is undefined or vimrc_present.stat.exists == False
+
+- name: Enable vim syntax highlighting
+  lineinfile: 
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    line: "syntax on"
+
+- name: Setting vim color scheme
+  lineinfile: 
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    line: "colo delek"

@@ -1,0 +1,7 @@
+---
+
+- name: Ensure vim is installed
+  apt: 
+    name: vim
+    state: present
+    update_cache: yes

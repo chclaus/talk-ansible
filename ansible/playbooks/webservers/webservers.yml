@@ -5,7 +5,10 @@
 - name: Provision webservers
   hosts: webservers
   gather_facts: True
-  serial: 1
+  serial: 2
+  roles:
+    - base-packages
+    - shell-settings
   tasks:
   - name: Ensure nginx is installed
     apt:
