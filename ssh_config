@@ -1,19 +1,23 @@
 Host web1.example.com
+  hostname localhost
   IdentityFile ~/.ssh/id_rsa
   User root
   Port 4200
 
 Host web2.example.com
+  hostname localhost
   IdentityFile ~/.ssh/id_rsa
   User root
   Port 4201
 
 Host db1.example.com
+  hostname localhost
   IdentityFile ~/.ssh/id_rsa
   User root
   Port 4202
 
 Host mail.example.com
+  hostname localhost
   IdentityFile ~/.ssh/id_rsa
   User root
   Port 4203
