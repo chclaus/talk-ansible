@@ -1,6 +1,8 @@
 # Ansible - deployment and configuration management
 
-Early draft of example files for a Micromata tech-talk.
+Example repository for the Micromata TECH-TALK [Ansible - a brief introduction](https://www.micromata.de/blog/ansible-agile-softwareentwicklung).
+
+The slides to this repository can be found at https://slides.com/chclaus/ansible
 
 ## Docker environment
 
